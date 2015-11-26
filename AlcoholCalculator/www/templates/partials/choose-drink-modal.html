@@ -1,0 +1,15 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">Choose drink</h1>
+  </ion-header-bar>
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item item-height="50px"
+                item-width="100%"
+                collection-repeat="item in drinksList"
+                on-touch="closeModal(item)">
+        {{item.type}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</div>
