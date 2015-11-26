@@ -1,5 +1,35 @@
 <ion-view view-title="Drink">
   <ion-content>
-    <h1>Drink</h1>
+    <form name="drinkInputForm">
+      <div class="list card">
+        <label class="item item-input item-select" on-tap="openModal()">
+          <span class="input-label">Select a drink: </span>
+          <div>
+            <span>{{drink.type}}</span>
+          </div>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Quantity</span>
+          <input type="number" required placeholder="ml" ng-model="drink.quantity"/>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Alcohol strength</span>
+          <input type="number" required placeholder="%" ng-model="drink.strength"/>
+        </label>
+        <div class="item">
+          <span class="input-label">Pick date and time</span>
+          <ionic-timepicker input-obj="timePickerObject">
+            <button class="button button-block button-stable overflowShow">
+              <standard-time-meridian etime='timePickerObject.inputEpochTime'></standard-time-meridian>
+              <span>{{hours}}</span> : <span>{{minutes}}</span>
+            </button>
+          </ionic-timepicker>
+          <ionic-datepicker input-obj="datepickerObject">
+            <button class="button button-block button-stable"> {{datepickerObject.inputDate | date:'dd - MMMM - yyyy'}}</button>
+          </ionic-datepicker>
+        </div>
+        <button class="button button-block button-positive" on-touch="addDrink(drink, drinkInputForm)">
+          {{action}}
+        </button>
   </ion-content>
 </ion-view>

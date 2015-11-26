@@ -3,5 +3,5 @@
  */
 angular.module('app.controllers')
   .controller('DashCtrl', function($scope, $ionicModal, $timeout) {
-
+    'use strict';
   });

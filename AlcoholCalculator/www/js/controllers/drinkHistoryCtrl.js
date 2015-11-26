@@ -3,5 +3,5 @@
  */
 angular.module('app.controllers')
   .controller('DrinkHistoryCtrl', function($scope, $ionicModal, $timeout) {
-
+    'use strict';
   });

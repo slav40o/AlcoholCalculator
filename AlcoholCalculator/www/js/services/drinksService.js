@@ -15,9 +15,10 @@ angular.module('app.services')
     return result;
   }
 
-  function getLast() {
+  function createNewDrink() {
     var drink = localStorageService.getObject('last-drink');
     drink.time = new Date();
+    drink.id = uuidService.generateUUID();
     return drink;
   }
 
@@ -33,13 +34,11 @@ angular.module('app.services')
   }
 
   function addDrinkElement(drink, drinksList){
-// Calculate drink impact and how long it will take effect
     var bodyWater = localStorageService.get('bodyWater', 0);
     if(bodyWater <= 0) {
       return constructError('Body water is not calculated!', 'Body water should be calculated when the account information is changed.');
     }
 
-    drink.id = uuidService.generateUUID();
     drink.weight = calculationsService.calculateAlcoholWeight(drink.quantity, drink.strength);
     drink.BAC = calculationsService.calculateBAC(drink.quantity, drink.strength, bodyWater);
     drink.expireTime = calculationsService.calculateExpireTime(drink.BAC, new Date(drink.time), 0.13);
@@ -86,6 +85,20 @@ angular.module('app.services')
 
     return deferred.promise;
   }
+    function getById(id){
+      var deferred = $q.defer(),
+        drinks = getHistory(),
+        index = drinks.indexOfObject('id', id);
+      if(index < 0){
+        var error = constructError('Invalid drink id!', 'Drink with id {0} is not found in the drink history.'.format(id));
+        deferred.reject(error);
+      } else {
+        var drink = drinks[index];
+        deferred.resolve(drink);
+      }
+
+      return deferred.promise;
+    }
 
   function deleteDrink(id){
     var drinks = getHistory(),
@@ -253,7 +266,8 @@ angular.module('app.services')
 
   return {
     addDrink: addDrink,
-    getLast: getLast,
+    getById: getById,
+    getLast: createNewDrink,
     getHistory: getHistory,
     getDrinksList: getDrinksList,
     deleteDrink: deleteDrink,

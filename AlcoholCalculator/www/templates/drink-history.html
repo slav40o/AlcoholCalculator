@@ -1,5 +1,22 @@
 <ion-view view-title="Drink History">
-  <ion-content>
-    <h1>Drink History</h1>
+  <ion-nav-buttons side="right">
+    <i class="button button-icon ion-plus" ui-sref="app.drink({id: new})"></i>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item collection-repeat="drink in allDrinks">
+        <div class="row">
+          <div class="col-33">{{drink.type}}</div>
+          <div class="col-33">{{drink.strength}} %</div>
+          <div class="col-33">{{drink.quantity}} ml</div>
+        </div>
+        <div class="row">
+          <div class="col-33">{{drink.time | date}}</div>
+          <div class="col-33">{{drink.time | date : 'shortTime'}}</div>
+          <div class="col-33">{{drink.BAC}} &permil;</div>
+        </div>
+      </ion-item>
+    </ion-list>
+    <h1>{{count}}</h1>
   </ion-content>
 </ion-view>

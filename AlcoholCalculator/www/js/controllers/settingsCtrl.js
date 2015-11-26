@@ -3,5 +3,5 @@
  */
 angular.module('app.controllers')
   .controller('SettingsCtrl', function($scope, $ionicModal, $timeout) {
-
+    'use strict';
   });
