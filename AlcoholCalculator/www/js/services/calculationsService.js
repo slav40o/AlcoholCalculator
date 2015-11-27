@@ -1,7 +1,7 @@
 /**
  * Created by Slavi on 6.11.2015 г..
  */
-angular.module('app.services', []).factory('calculationsService', function(){
+angular.module('app.services').factory('calculationsService', function(){
   'use strict';
 
   function calculateBodyWater(gender, age, height, weight){

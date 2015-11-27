@@ -1,7 +1,7 @@
 /**
  * Created by s_tsvetanov on 20.3.2015 г..
  */
-angular.module('system.services', ['ionic']).factory('deviceService', function($window, localStorageService){
+angular.module('system.services', []).factory('deviceService', function($window, localStorageService){
 
     var deviceInfo, isWebView, isIPad, isIOS, isAndroid, isWindowsPhone, currentPlatform, currentPlatformVersion;
 

@@ -2,9 +2,10 @@
  * Created by Slavi on 26.11.2015 г..
  */
 angular.module('app.controllers')
-  .controller('DrinkCtrl', function ($scope, $ionicModal, $stateParams, $cordovaToast, deviceService, drinksService, logService) {
+  .controller('DrinkCtrl', function ($scope, $ionicModal, $stateParams, $state, deviceService, drinksService, logService) {
     'use strict';
     var id = $stateParams.id;
+    setupPickers(new Date(), 0);
 
     if (!id || id == "new") {
       $scope.drink = drinksService.getLast();
@@ -13,6 +14,7 @@ angular.module('app.controllers')
     } else {
       drinksService.getById(id).then(function (drink) {
         $scope.drink = drink;
+        $scope.drink.time = new Date(drink.time);
         $scope.action = "Change";
         initialize();
       }, function (error) {
@@ -23,7 +25,12 @@ angular.module('app.controllers')
 
     $scope.addDrink = function (drink, form) {
       if (form.$valid && $scope.drink.time) {
-        drinksService.addDrink($scope.drink);
+        var result = drinksService.addDrink($scope.drink);
+        if(result.error){
+          //TO DO: SHOW ERROR
+        } else {
+          $state.go('app.dash');
+        }
       } else {
         //TO DO: show appropriate message
         //showError('Invalid data!', deviceService, $cordovaToast)

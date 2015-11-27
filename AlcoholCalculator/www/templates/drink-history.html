@@ -4,17 +4,13 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <ion-item collection-repeat="drink in allDrinks">
+      <ion-item collection-repeat="drink in allDrinks" ui-sref="app.drink(drink)">
         <div class="row">
-          <div class="col-33">{{drink.type}}</div>
-          <div class="col-33">{{drink.strength}} %</div>
-          <div class="col-33">{{drink.quantity}} ml</div>
+          <div class="col"><img src="img/rum.png" style="width: 50px; height: 50px"/></div>
+          <div class="col col-top">{{drink.quantity}} ml - BAC: {{drink.BAC}}  &permil;</div>
+          <div class="col col-bottom">{{drink.time | date}}</div>
         </div>
-        <div class="row">
-          <div class="col-33">{{drink.time | date}}</div>
-          <div class="col-33">{{drink.time | date : 'shortTime'}}</div>
-          <div class="col-33">{{drink.BAC}} &permil;</div>
-        </div>
+        <ion-option-button class="button button-assertive" on-touch="deleteDrink(drink)">Delete</ion-option-button>
       </ion-item>
     </ion-list>
     <h1>{{count}}</h1>
