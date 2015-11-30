@@ -136,6 +136,7 @@ angular.module('app.controllers')
 
     function setDrinkProps(drink) {
       $scope.drink.type = drink.type;
+      $scope.drink.img = drink.img;
       $scope.drink.strength = drink.strength;
       $scope.drink.quantity = drink.quantity;
     }

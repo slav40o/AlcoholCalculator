@@ -24,13 +24,18 @@ angular.module('app.services')
 
     function getHistory() {
       var drinksObject = localStorageService.getObject('drink-history');
-      return drinksObject.history || [];
+      if (Object.keys(drinksObject.history).length === 0) return [];
+      else return drinksObject.history;
     }
 
     function setHistory(drinks) {
       var drinksObject = localStorageService.getObject('drink-history');
       drinksObject.history = drinks;
       localStorageService.setObject('drink-history', drinksObject);
+    }
+
+    function clearHistory(){
+      setHistory({});
     }
 
     function addDrinkElement(drink, drinksList) {
@@ -68,7 +73,7 @@ angular.module('app.services')
       var deferred = $q.defer(),
         drinkTypes = localStorageService.getObject('drinkTypes');
 
-      if (Object.keys(drinkTypes).length == 0 || drinkTypes.length < 5) {
+      if (Object.keys(drinkTypes).length === 0) {
         //$http.get('data/drink-types.json')
         //  .success(function(data){
         //    drinkTypes = data.drinkTypes;
@@ -173,7 +178,7 @@ angular.module('app.services')
           "quantity": 50,
           "type": "Whisky",
           "brand": "",
-          "img": "img/whisky.jpg"
+          "img": "img/whiskey.jpg"
         }, {
           "id": 2,
           "strength": 15,
@@ -222,7 +227,7 @@ angular.module('app.services')
           "quantity": 50,
           "type": "Rum",
           "brand": "",
-          "img": "img/rum.png"
+          "img": "img/rum.jpg"
         }, {
           "id": 11,
           "strength": 40,
@@ -260,6 +265,7 @@ angular.module('app.services')
       getById: getById,
       getLast: createNewDrink,
       getHistory: getHistory,
+      clearHistory: clearHistory,
       getDrinksList: getDrinksList,
       deleteDrink: deleteDrink,
       updateDrink: updateDrink
