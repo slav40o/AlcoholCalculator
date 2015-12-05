@@ -1,5 +1,57 @@
 <ion-view view-title="Settings">
-  <ion-content>
-    <h1>Settings</h1>
+  <ion-content class="has-header">
+    <ion-list>
+      <div class="item item-divider">
+        Height
+      </div>
+      <ion-radio ng-value="'cm'"
+                 ng-change="changeSettings('height')"
+                 ng-checked="cmSelected"
+                 ng-model="settings.height"
+                 name = "height">
+        Centimeters
+      </ion-radio>
+      <ion-radio ng-value="'ft'"
+                 ng-change="changeSettings('height')"
+                 ng-checked="ftSelected"
+                 ng-model="settings.height"
+                 name = "height">
+        Feet
+      </ion-radio>
+      <div class="item item-divider">
+        Weight
+      </div>
+      <ion-radio ng-value="'kg'"
+                 ng-change="changeSettings('weight')"
+                 ng-checked="kgSelected"
+                 ng-model="settings.weight"
+                 name = "weight">
+        Kilograms
+      </ion-radio>
+      <ion-radio ng-value="'lb'"
+                 ng-change="changeSettings('weight')"
+                 ng-checked="lbSelected"
+                 ng-model="settings.weight"
+                 name = "weight">
+        Pounds
+      </ion-radio>
+      <div class="item item-divider">
+        Volume
+      </div>
+      <ion-radio ng-value="'ml'"
+                 ng-change="changeSettings('volume')"
+                 ng-checked="mlSelected"
+                 ng-model="settings.volume"
+                 name = "volume">
+        Milliliters
+      </ion-radio>
+      <ion-radio ng-value="'oz'"
+                 ng-change="changeSettings('volume')"
+                 ng-checked="ozSelected"
+                 ng-model="settings.volume"
+                 name = "volume">
+        Ounces
+      </ion-radio>
+    </ion-list>
   </ion-content>
 </ion-view>

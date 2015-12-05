@@ -7,6 +7,8 @@ angular.module('app.controllers')
     var id = $stateParams.id;
     setupPickers(new Date(), 0);
 
+    $scope.settings = deviceService.getSettings();
+
     if (!id || id == "new") {
       $scope.drink = drinksService.getLast();
       $scope.action = "Add";

@@ -24,7 +24,7 @@ input.ng-invalid.ng-dirty {
   /*height: 50px;*/
 /*}*/
 
-.img-large > img{
+.img-large img{
   display: block;
   height: 200px;
   margin-left: auto;

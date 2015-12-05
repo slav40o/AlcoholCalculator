@@ -2,10 +2,12 @@
  * Created by Slavi on 26.11.2015 г..
  */
 angular.module('app.controllers')
-  .controller('AccountCtrl', function($scope, messageService, accountService) {
+  .controller('AccountCtrl', function($scope, messageService, accountService, deviceService) {
     'use strict';
 
     $scope.account = accountService.getCurrent();
+
+    $scope.settings = deviceService.getSettings();
 
     $scope.saveChanges = function(account, form){
       if (form.$valid){

@@ -1,22 +1,29 @@
 /**
  * Created by Slavi on 6.11.2015 г..
  */
-angular.module('app.services').factory('calculationsService', function(){
+angular.module('app.services').factory('calculationsService', function(convertService){
   'use strict';
 
   function calculateBodyWater(gender, age, height, weight){
-    var water = 0;
+    var water = 0,
+      data = convertService.convertToMetric({
+        height: height,
+        weight: weight
+      });
     if(gender === "m"){
-      water = 2.447 - (0.09156 * age) + (0.1074 * height) + (0.3362 * weight);
+      water = 2.447 - (0.09156 * age) + (0.1074 * data.height) + (0.3362 * data.weight);
     } else {
-      water = -2.097 + (0.1069 * height) + (0.2466 * weight);
+      water = -2.097 + (0.1069 * dataheight) + (0.2466 * data.weight);
     }
 
     return water;
   }
 
   function calculateAlcoholWeight(alcoholQuantity, alcoholStrength){
-    return (alcoholQuantity * (alcoholStrength / 100)) * 0.79;
+    var data = convertService.convertToMetric({
+      volume: alcoholQuantity
+    });
+    return (data.volume * (alcoholStrength / 100)) * 0.79;
   }
 
   function calculateBAC(alcoholQuantity, alcoholStrength, bodyWater){

@@ -24,7 +24,7 @@ angular.module('app.services')
 
     function getHistory() {
       var drinksObject = localStorageService.getObject('drink-history');
-      if (Object.keys(drinksObject.history).length === 0) return [];
+      if (Object.keys(drinksObject).length === 0 || Object.keys(drinksObject.history).length === 0) return [];
       else return drinksObject.history;
     }
 
@@ -160,7 +160,6 @@ angular.module('app.services')
           localStorageService.set('drink-state-changed', true);
           setHistory(drinks);
           deferred.resolve(messageService.constructMessage('Drink info successfully updated!', 'Drink with id: {} is updated'.format(id)));
-          return result.drink = drink;
         }
       } else {
         deferred.resolve(messageService.constructMessage('No new info to be updated!', "Drink with id: {} doesn't have new data".format(id)));
@@ -265,6 +264,7 @@ angular.module('app.services')
       getById: getById,
       getLast: createNewDrink,
       getHistory: getHistory,
+      setHistory: setHistory,
       clearHistory: clearHistory,
       getDrinksList: getDrinksList,
       deleteDrink: deleteDrink,

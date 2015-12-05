@@ -2,18 +2,25 @@
   <form name="drinkInputForm">
   <ion-content>
       <div class="list card img-large">
-        <img ng-src="{{drink.img}}" alt="Drink"/>
+        <div class="row">
+          <div class="col-50">
+            <img ng-src="{{drink.img}}" alt="Drink"/>
+          </div>
+          <div class="col-50">
+            <label class="item item-input item-stacked-label" on-tap="openModal()">
+              <i class="icon ion-arrow-down-a"></i>
+              <span class="input-label">Select a drink</span>
+              <div>
+                <span>{{drink.type}}</span>
+              </div>
+            </label>
+          </div>
+        </div>
       </div>
       <div class="list card">
-        <label class="item item-input item-select" on-tap="openModal()">
-          <span class="input-label">Select a drink: </span>
-          <div>
-            <span>{{drink.type}}</span>
-          </div>
-        </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Quantity</span>
-          <input type="number" required placeholder="ml" ng-model="drink.quantity"/>
+          <input type="number" required placeholder="{{settings.volume}}" ng-model="drink.quantity"/>{{settings.volume}}
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Alcohol strength</span>

@@ -19,13 +19,17 @@ angular.module('system.services', []).factory('deviceService', function($window,
     });
 
     function getSettings(){
-        var settings = localStorageService.getObject('appSettings');
+        var settings = localStorageService.getObject('app-settings');
 
         // Set default settings object
         if(Object.keys(settings).length == 0){
             settings = {
-
+              weight: 'kg',
+              height: 'cm',
+              volume: 'ml'
             };
+
+          setSettings(settings);
         }
 
         return settings;
@@ -33,7 +37,7 @@ angular.module('system.services', []).factory('deviceService', function($window,
 
     function setSettings(settings) {
         if (settings) {
-            localStorageService.setObject('appSettings', settings);
+            localStorageService.setObject('app-settings', settings);
         }
     }
 

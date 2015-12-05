@@ -2,11 +2,12 @@
  * Created by Slavi on 26.11.2015 г..
  */
 angular.module('app.controllers')
-  .controller('DrinkHistoryCtrl', function($scope, $state, drinksService, logService, localStorageService, messageService) {
+  .controller('DrinkHistoryCtrl', function($scope, $state, drinksService, logService, localStorageService, messageService, deviceService) {
     'use strict';
 
+    $scope.settings = deviceService.getSettings();
     $scope.$on('$ionicView.beforeEnter', function(){
-      var isDrinkAdded = localStorageService.get('drink-state-changed') || false;
+      var isDrinkAdded = localStorageService.get('drink-state-changed', false);
       if(isDrinkAdded){
         reloadDrinks();
       }
